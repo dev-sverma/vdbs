@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="VDBS.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>VDBS</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="Styles/site-style.css?modfied=3" rel="stylesheet" />
+    <script>
+        function SetActiveLink(id) {
+            $("#navbarList").children("a.nav-link").removeClass("active");
+            $(id).addClass("active");
+        }
+        function toggleMessageModal() {
+            $('#messageModal').modal('show');
+            setTimeout(function () {
+                $('#messageModal').modal('hide');
+            }, 4000);
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="headPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="main-div">
+        <div id="content-div">
+            <form id="siteForm" runat="server">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(40, 53, 147, 1);">
+                    <a class="navbar-brand" href='<%= ResolveUrl("~/CompanyMaster.aspx") %>'>VDBS
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="navbarNavDropdown" class="collapse navbar-collapse">
+                        <ul class="navbar-nav nav-pills ml-auto" id="navbarList">
+
+                            <li class="nav-item">
+                                <a id="companyMasterLink" class="nav-link text-light text-center px-3" runat="server" href="~/CompanyMaster.aspx">Company Master</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="companyViewLink" class="nav-link text-light text-center px-3" runat="server" href="~/CompanyViewPage.aspx">Company View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div>
+                    <asp:ContentPlaceHolder ID="bodyPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- Page Message Modal -->
+                <div class="modal fade" id="messageModal">
+                    <div class="modal-dialog">
+                        <asp:UpdatePanel ID="messageUpdPnl" runat="server">
+                            <ContentTemplate>
+                                <asp:Panel ID="contentPnl" runat="server" CssClass="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Message</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-row">
+                                            <asp:Label ID="messageInfo" runat="server"></asp:Label>
+                                        </div>
+                                        <br />
+                                        <div class="form-row justify-content-end">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </form>
+            <br />
+        </div>
+        <div style="background-color: rgba(40, 53, 147, 1); color: white;" class="d-block text-center py-3">
+            Website designed & developed by Sakshi Verma
+                <br />
+            &copy; Sakshi Verma
+        </div>
+    </div>
+</body>
+</html>
