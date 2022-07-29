@@ -86,7 +86,7 @@ namespace VDBS.App_Code
 
             try
             {
-                string query = @"SELECT Id, Name, Status FROM CompanyMaster";
+                string query = @"SELECT Id, Name, ISNULL(Status, -1) AS Status FROM CompanyMaster";
                 response = db.ExecuteReader(query);
             }
             catch (Exception ex)

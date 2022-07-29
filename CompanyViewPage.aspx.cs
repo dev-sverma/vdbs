@@ -126,7 +126,7 @@ namespace VDBS
 
                 var status = companyGrid.DataKeys[e.Row.RowIndex]["Status"];
                 bool enableStatus = false;
-                if(status == null || status.ToString() == "1")
+                if(status.ToString() == "-1" || status.ToString() == "1")
                     enableStatus = true;
 
                 showBtn.Enabled = enableStatus;
