@@ -43,7 +43,7 @@ namespace VDBS.App_Code
 
                 if (db.ExecuteNonQueryWithParameters(companyMasterQuery, comapnyMasterParams) == 1 && files != null && files.Count > 0)
                 {
-                    string companyId = GetMaxCompanyMasterId();
+                    string companyId = GetMaxCompanyMasterId(); // Get the foreign key
 
                     var fileQuery = @"INSERT INTO FileMaster (FileName, CompanyId) VALUES (@FileName ,@CompanyId)";
                     var fileQueries = new List<string>();
@@ -86,7 +86,7 @@ namespace VDBS.App_Code
 
             try
             {
-                string query = @"SELECT Id, Name, ISNULL(Status, -1) AS Status FROM CompanyMaster";
+                string query = @"SELECT Id, Name, Status FROM CompanyMaster";
                 response = db.ExecuteReader(query);
             }
             catch (Exception ex)

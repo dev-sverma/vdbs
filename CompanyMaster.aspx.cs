@@ -43,6 +43,7 @@ namespace VDBS
 
                 var fileNames = new List<string>();
                 string currentFileName = string.Empty;
+                // Save Multiple files
                 for (int index = 0; index < companyFiles.Count; index++)
                 {
                     currentFileName = business.GetFileName(companyFiles[index].FileName);

@@ -124,9 +124,9 @@ namespace VDBS
                 var showBtn = e.Row.FindControl("btnShow") as Button;
                 var approveDisapproveBtn = e.Row.FindControl("btnApproveDisapprove") as Button;
 
-                var status = companyGrid.DataKeys[e.Row.RowIndex]["Status"];
+                var status = companyGrid.DataKeys[e.Row.RowIndex]["Status"].ToString();
                 bool enableStatus = false;
-                if(status.ToString() == "-1" || status.ToString() == "1")
+                if(string.IsNullOrEmpty(status) || status.ToString() == "1")
                     enableStatus = true;
 
                 showBtn.Enabled = enableStatus;
